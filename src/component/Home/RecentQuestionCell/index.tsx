@@ -14,11 +14,8 @@ const RecentQuestionCell: React.FC<RecentQuestionProps> = (props) => {
         </h3>
         <div className="rqLeft__info">
           <p className="rqLeft__infoItem rqLeft__author">Jtamedrano</p>
-          <span> - </span>
           <p className="rqLeft__infoItem rqLeft__privacy">Public</p>
-          <span> - </span>
           <p className="rqLeft__infoItem rqLeft__group">Unit 1</p>
-          <span> - </span>
           <p className="rqLeft__infoItem reqLeft__time">1 Hour</p>
         </div>
       </div>
