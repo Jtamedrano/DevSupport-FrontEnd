@@ -1,24 +1,16 @@
-import { Container } from '@material-ui/core';
-import { Route, Switch } from 'react-router';
-import Header from './components/Header';
-import Join from './view/Join';
-import Login from './view/login';
+import { Route } from 'react-router';
+import HeaderNav from './component/HeaderNav';
 
-function App() {
+// View Imports
+import Home from './view/Home';
+
+const App = () => {
   return (
-    <Container maxWidth="md">
-      <Header />
-      <Switch>
-        <Route path="/join" component={Join} />
-        <Route path="/login" component={Login} />
-        <Route exact path="/">
-          <>
-            <p>Home</p>
-          </>
-        </Route>
-      </Switch>
-    </Container>
+    <div>
+      <HeaderNav />
+      <Route exact path="/" component={Home} />
+    </div>
   );
-}
+};
 
 export default App;
