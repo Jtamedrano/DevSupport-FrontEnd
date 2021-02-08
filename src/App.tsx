@@ -6,10 +6,12 @@ import Home from './view/Home';
 
 const App = () => {
   return (
-    <div>
+    <>
       <HeaderNav />
-      <Route exact path="/" component={Home} />
-    </div>
+      <div className="app__contentContainer">
+        <Route exact path="/" component={Home} />
+      </div>
+    </>
   );
 };
 

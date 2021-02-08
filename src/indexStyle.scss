@@ -11,5 +11,12 @@
 }
 
 body {
-  background-color: rgba(247, 247, 255, 0.8);
+  background-color: rgb(230, 230, 255);
+  position: relative;
+  min-height: 100vh;
+}
+
+.app__contentContainer {
+  height: 100vh;
+  padding-top: 50px;
 }

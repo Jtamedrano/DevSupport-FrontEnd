@@ -1,12 +1,14 @@
 .headerNav {
   box-shadow: 0 1px 3px #00000050;
-  margin-bottom: 1em;
+  z-index: 9999;
+  position: absolute;
   &#{&}__container {
     width: 100%;
     height: 100%;
-    max-height: 200px;
+    max-height: 50px;
     background-color: rgb(255, 255, 255);
     display: flex;
+    align-items: center;
   }
 
   #{&}__navBrand {
