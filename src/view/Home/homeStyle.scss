@@ -6,7 +6,12 @@
     display: flex;
   }
 
-  #{&}__sideBar {
+  #{&}__sidebar,
+  #{&}__mainContent {
+    padding: 1.5em 1em;
+  }
+
+  #{&}__sidebar {
     flex-basis: 20%;
     min-width: 250px;
     box-shadow: 1px 0px 3px #00000050;
