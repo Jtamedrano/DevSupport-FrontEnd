@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 import Join from './view/Join';
 import Login from './view/login';
 

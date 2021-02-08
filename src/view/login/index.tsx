@@ -9,7 +9,6 @@ import InputField from '../../components/InputField';
 
 // style
 import './style.scss';
-import { toErrorMap } from '../../utils/toErrorMap';
 
 interface Props {}
 
@@ -20,7 +19,7 @@ const Login: React.FC<Props> = () => {
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
-      onSubmit={async (values, setErrors) => {
+      onSubmit={async (values) => {
         const response = await login(values);
         if (response.data?.login.user?.username) {
           history.push('/');
