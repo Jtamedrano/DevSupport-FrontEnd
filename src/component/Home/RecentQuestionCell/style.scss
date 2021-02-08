@@ -1,0 +1,45 @@
+.recentQuestion {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+
+  #{&}__left {
+    flex: 1;
+  }
+
+  #{&}__right {
+    flex-basis: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.rqLeft {
+  #{&}__title {
+    font-size: 1.5rem;
+  }
+
+  #{&}__info {
+    display: flex;
+    width: 50%;
+    &Item {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.rqRight {
+  & #{&}__cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
