@@ -4,7 +4,6 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
-  FormHelperText,
   IconButton,
   InputAdornment,
   LinearProgress,
@@ -19,8 +18,7 @@ import { useHistory } from 'react-router-dom';
 interface Props {}
 
 const signUpSchema = yup.object({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
+  username: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required().min(6),
   confirmedPassword: yup.string().required().min(6),
@@ -52,8 +50,7 @@ const Form = styles.form`
 
 const Join = (props: Props) => {
   const [signUp, setSignUp] = useState<SignUpProps>({
-    firstName: '',
-    lastName: '',
+    username: '',
     email: '',
     password: '',
     confirmedPassword: '',
@@ -66,11 +63,6 @@ const Join = (props: Props) => {
     errorMessage: '',
   });
   const history = useHistory();
-
-  useEffect(() => {
-    setFormIsValid(signUpSchema.isValidSync(signUp));
-    passwordVerification();
-  }, [signUp]);
 
   const setInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -100,7 +92,7 @@ const Join = (props: Props) => {
         if (regexStringTest(/[a-z]/i, pass)) {
           pointsEarned += 5;
         }
-        if (regexStringTest(/^[0-9!@#\$%\^\&*\)\(+=._-]+$/g, pass)) {
+        if (regexStringTest(/^[0-9!@#$%^&*)(+=._-]+$/g, pass)) {
           pointsEarned += 5;
         }
         if (pass.length >= 8) {
@@ -131,42 +123,34 @@ const Join = (props: Props) => {
     event.preventDefault();
   };
 
+  useEffect(() => {
+    setFormIsValid(signUpSchema.isValidSync(signUp));
+    passwordVerification();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signUp]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (formIsValid && passwordCompletion.percentage >= 90) {
       console.log(signUp);
+      history.push('/');
     }
-    history.push('/');
   };
-  console.log(passwordCompletion);
+
   return (
     <Box m={1}>
       <Form id="signUpForm" onSubmit={handleSubmit}>
-        <FormControl id="firstNameInputControl" margin="normal">
+        <FormControl id="usernameInputControl" margin="normal">
           <TextField
-            label="First Name"
-            id="firstNameInput"
-            value={signUp.firstName}
-            name="firstName"
+            label="User Name"
+            id="usernameInput"
+            value={signUp.username}
+            name="username"
             onChange={setInputValue}
             required
             variant="standard"
             InputProps={{
               autoComplete: 'given-name',
-            }}
-          />
-        </FormControl>
-        <FormControl id="lastNameInputControl" margin="normal">
-          <TextField
-            label="Last Name"
-            id="lastNameInput"
-            value={signUp.lastName}
-            name="lastName"
-            onChange={setInputValue}
-            required
-            variant="standard"
-            InputProps={{
-              autoComplete: 'family-name',
             }}
           />
         </FormControl>
