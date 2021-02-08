@@ -21,6 +21,7 @@ const Login: React.FC<Props> = () => {
       initialValues={{ username: '', password: '' }}
       onSubmit={async (values) => {
         const response = await login(values);
+        console.log(response);
         if (response.data?.login.user?.username) {
           history.push('/');
         }

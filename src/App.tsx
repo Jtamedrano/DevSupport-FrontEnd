@@ -1,11 +1,13 @@
 import { Container } from '@material-ui/core';
 import { Route, Switch } from 'react-router';
+import Header from './components/Header';
 import Join from './view/Join';
 import Login from './view/login';
 
 function App() {
   return (
     <Container maxWidth="md">
+      <Header />
       <Switch>
         <Route path="/join" component={Join} />
         <Route path="/login" component={Login} />
