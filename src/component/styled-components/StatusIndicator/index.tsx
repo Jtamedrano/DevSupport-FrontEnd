@@ -17,7 +17,7 @@ const StatusIndicatorStyle = styled.span<StatusIndicatorProps>`
   border-color: transparent;
   padding: 0.5em 1em;
   border-radius: 0.75em;
-  font-weight: 700;
+  font-weight: 500;
 
   ${(props) => {
     const { color, variant } = props;
