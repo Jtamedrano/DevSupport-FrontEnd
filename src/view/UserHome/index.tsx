@@ -1,5 +1,5 @@
 import React from 'react';
-import RecentQuestionCell from 'src/component/Home/RecentQuestionCell';
+import RecentQuestionCell from 'src/component/UserHome/RecentQuestionCell';
 
 // components
 import Sidebar from '../../component/Sidebar';

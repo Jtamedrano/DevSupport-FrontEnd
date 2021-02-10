@@ -1,15 +1,17 @@
 import { Route } from 'react-router';
 import HeaderNav from './component/HeaderNav';
+import LandingPageHome from './view/LandingPageHome';
 
 // View Imports
-import Home from './view/Home';
+import UserHome from './view/UserHome';
 
 const App = () => {
   return (
     <>
       <HeaderNav />
       <div className="app__contentContainer">
-        <Route exact path="/" component={Home} />
+        <Route path="/home" component={UserHome} />
+        <Route exact path="/" component={LandingPageHome} />
       </div>
     </>
   );
