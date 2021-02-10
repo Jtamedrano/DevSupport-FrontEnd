@@ -1,12 +1,16 @@
 import React, { FormEvent } from 'react';
+import { useHistory } from 'react-router';
 import { Button } from 'src/component/styled-components';
 import Form from 'src/component/styled-components/Form';
 
 interface LoginViewProps {}
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
+  const history = useHistory();
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    history.push('/home');
   };
 
   return (

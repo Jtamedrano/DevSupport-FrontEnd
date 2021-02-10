@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'src/component/styled-components';
 
 import './landingHomeStyle.scss';
@@ -14,7 +15,9 @@ const LandingPageHome: React.FC<LandingPageHomeProps> = (props) => {
       </div>
       <p className="landingHome__cta">Log in or Register now to get started</p>
       <div className="landingHome__buttonRack">
-        <Button className="landingHome__btn">Login</Button>
+        <Link to="/login">
+          <Button className="landingHome__btn">Login</Button>
+        </Link>
         <Button className="landingHome__btn">Register</Button>
       </div>
     </div>
