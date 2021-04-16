@@ -1,6 +1,7 @@
 const questions = [
   {
     question: 'What is 1 + 1?',
+    createdAt: 1519211809934,
     resolved: true,
     resolution: '2',
     upvote: '10',
@@ -10,6 +11,7 @@ const questions = [
   },
   {
     question: 'What is the meaning of life?',
+    createdAt: 1519211810362,
     resolved: false,
     resolution: '',
     upvote: '10',

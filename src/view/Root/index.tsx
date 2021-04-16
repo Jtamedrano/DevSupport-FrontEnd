@@ -11,6 +11,7 @@ import questions from '../../data';
 //TESTING DATA
 import QuestionComponent from '../../components/questions_component';
 import QuestionSubmission from '../../components/questions-submission';
+import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
 
 interface ViewProps {}
 
@@ -34,7 +35,10 @@ const RootView: React.FC = (props: ViewProps) => {
   const classes = useStyles();
   return (
     <>
-      <h1>{`De<_Support`}</h1>
+      <h1>
+        {`De`} <ArrowBackIosSharpIcon fontSize="inherit" color="error" />
+        {`_Support`}
+      </h1>
       <QuestionSubmission />
       <div className={classes.rootPaper}>
         <h2>Question List</h2>
