@@ -8,11 +8,11 @@ import './style.css';
 const theme = createMuiTheme();
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Router>
+  <Router>
+    <ThemeProvider theme={theme}>
       <App />
-    </Router>
-  </ThemeProvider>,
+    </ThemeProvider>
+  </Router>,
   document.getElementById('root'),
 );
 
