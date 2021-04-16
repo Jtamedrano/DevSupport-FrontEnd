@@ -10,6 +10,7 @@ import {
 import questions from '../../data';
 //TESTING DATA
 import QuestionComponent from '../../components/questions_component';
+import QuestionSubmission from '../../components/questions-submission';
 
 interface ViewProps {}
 
@@ -34,16 +35,7 @@ const RootView: React.FC = (props: ViewProps) => {
   return (
     <>
       <h1>{`De<_Support`}</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <TextField id="title" label="Title" />
-        <Button type="submit" variant="contained">
-          Submit
-        </Button>
-      </form>
+      <QuestionSubmission />
       <div className={classes.rootPaper}>
         <h2>Question List</h2>
         {questions.map((q, i) => {
