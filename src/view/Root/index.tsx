@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Button,
   makeStyles,
@@ -5,26 +6,12 @@ import {
   TextField,
   Accordion,
 } from '@material-ui/core';
-import React from 'react';
+//TESTING DATA
+import questions from '../../data';
+//TESTING DATA
+import QuestionComponent from '../../components/questions_component';
 
 interface ViewProps {}
-
-const questions = [
-  {
-    question: 'What is 1 + 1?',
-    resolved: true,
-    resolution: '2',
-    author: { username: 'Bob Smith' },
-    group: { groupName: 'Front End' },
-  },
-  {
-    question: 'What is the meaning of life?',
-    resolved: false,
-    resolution: '',
-    author: { username: 'Angela Johnson' },
-    group: { groupName: 'Back End' },
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   rootPaper: {
@@ -35,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(2),
       padding: theme.spacing(1),
       minHeight: theme.spacing(16),
+    },
+    chip: {
+      margin: theme.spacing(0.5),
     },
   },
 }));
@@ -57,24 +47,7 @@ const RootView: React.FC = (props: ViewProps) => {
       <div className={classes.rootPaper}>
         <h2>Question List</h2>
         {questions.map((q, i) => {
-          return (
-            <Paper key={i}>
-              <p>Author: {q.author.username}</p>
-              <p>Title: {q.question}</p>
-              <p>Resolved: {q.resolved + ''}</p>
-              {q.resolved ? (
-                <>
-                  <p>Response: {q.resolution}</p>
-                  <Button variant="contained">Rate Response Up</Button>
-                  <Button variant="contained">Rate Response Down</Button>
-                </>
-              ) : (
-                <>
-                  <Button variant="contained">Request Answer</Button>
-                </>
-              )}
-            </Paper>
-          );
+          return <QuestionComponent q={q} i={i} />;
         })}
       </div>
     </>
