@@ -1,31 +1,18 @@
 import React from 'react';
 import { Button, IconButton, Paper, Chip, Badge } from '@material-ui/core';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-
 import QuestionResponse from '../questions-response';
+import ResponseComponent from '../response_component';
+import type { Question } from 'src/types';
 
 export interface QuestionsComponentProps {
-  q: {
-    question: string;
-    createdAt: number;
-    resolved: boolean;
-    resolution: string;
-    upvote: string;
-    downvote: string;
-    author: {
-      username: string;
-    };
-    group: {
-      groupName: string;
-    };
-  };
+  q: Question;
   i: number;
 }
 
 const QuestionsComponent = (props: QuestionsComponentProps) => {
   const { q, i } = props;
+  console.log(q);
   return (
     <>
       <Paper key={i}>
@@ -46,33 +33,17 @@ const QuestionsComponent = (props: QuestionsComponentProps) => {
             <p>Answer:</p>
             <p> {q.resolution}</p>
 
-            <div style={{ display: 'flex', margin: '5px' }}>
-              <p>Upvotes: {q.upvote}</p>
-              <Button
-                variant="outlined"
-                startIcon={<ThumbUpAltOutlinedIcon />}
-                color="primary"
-              >
-                Upvote
-              </Button>
-              <p>Downvotes: {q.downvote}</p>
-              <Button
-                variant="outlined"
-                startIcon={<ThumbDownAltOutlinedIcon />}
-                color="secondary"
-              >
-                Downvote
-              </Button>
-            </div>
-            <QuestionResponse />
+            {q.responses &&
+              q.responses.map((response, i) => (
+                <ResponseComponent response={response} i={i} />
+              ))}
           </>
         ) : (
           <>
-            <Button variant="outlined" color="primary">
-              Request Answer
-            </Button>
+            <Button color="primary">Request Answer</Button>
           </>
         )}
+        <QuestionResponse />
       </Paper>
     </>
   );

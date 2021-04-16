@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { Button, TextField } from '@material-ui/core';
+import type { Question } from 'src/types';
 
-export interface QuestionResponseProps {}
+export interface QuestionResponseProps {
+  q: Question;
+}
 
-const QuestionResponse: React.SFC<QuestionResponseProps> = () => {
+const QuestionResponse: React.FC = () => {
   return (
     <>
       <form
@@ -12,7 +15,7 @@ const QuestionResponse: React.SFC<QuestionResponseProps> = () => {
         }}
       >
         <TextField id="response" label="response" />
-        <Button type="submit" variant="outlined" color="primary">
+        <Button type="submit" color="primary">
           Submit Response
         </Button>
       </form>
