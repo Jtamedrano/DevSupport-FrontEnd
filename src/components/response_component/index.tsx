@@ -2,7 +2,7 @@ import React from 'react';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import type { Question, Response } from 'src/types';
 import Vote from '../vote_component';
-import { Container, Divider, makeStyles } from '@material-ui/core';
+import { Container, Divider, makeStyles, Typography } from '@material-ui/core';
 
 export interface ResponseProps {
   response: Response;
@@ -26,8 +26,12 @@ const ResponseComponent = (props: ResponseProps) => {
       return (
         <Container maxWidth="xl" className={classes.responseContainer}>
           <AccessTimeIcon /> {new Date(response.createdAt).toUTCString()}
-          <p>Author: {response.author.username}</p>
-          <p>Answer: {response.resolution}</p>
+          <Typography variant="h6" component="h4">
+            Author: {response.author.username}
+          </Typography>
+          <Typography variant="h5" component="h3">
+            {response.resolution}
+          </Typography>
           <Vote response={response} />
           <Divider variant="middle" className={classes.divider} />
         </Container>
