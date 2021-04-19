@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Button, TextField } from '@material-ui/core';
+import {
+  Button,
+  makeStyles,
+  TextField,
+  FormControl,
+  InputLabel,
+  Typography,
+} from '@material-ui/core';
 import type { Question } from 'src/types';
 
 export interface QuestionResponseProps {
@@ -9,16 +16,19 @@ export interface QuestionResponseProps {
 const QuestionResponse: React.FC = () => {
   return (
     <>
-      <form
+      <Typography variant="h6" component="h6">
+        Please enter your response:
+      </Typography>
+      <FormControl
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
-        <TextField id="response" label="response" />
+        <TextField id="response" label="Response" />
         <Button type="submit" color="primary">
           Submit Response
         </Button>
-      </form>
+      </FormControl>
     </>
   );
 };
