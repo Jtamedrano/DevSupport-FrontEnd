@@ -6,7 +6,9 @@ const Login: React.FC = () => {
     <form onSubmit={(e) => e.preventDefault()}>
       <TextField required id="username" label="Username" />
       <TextField required id="password" label="Password" />
-      <Button type="submit" variant="outlined" color="primary" />
+      <Button type="submit" variant="outlined" color="primary">
+        Login
+      </Button>
     </form>
   );
 };

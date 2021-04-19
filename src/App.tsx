@@ -15,9 +15,9 @@ function App({}: AppProps) {
     <Container className="App">
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/" component={Root} />
-        <Route path="/login">
-          <Login />
-        </Route>
+      <Route path="/login" component={Login}>
+        <Login />
+      </Route>
     </Container>
   );
 }
