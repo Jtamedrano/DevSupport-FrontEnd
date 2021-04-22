@@ -13,11 +13,9 @@ interface AppProps {}
 function App({}: AppProps) {
   return (
     <Container className="App">
-      <Route exact path="/signup" component={SignUp} />
+      <Route path="/join" component={SignUp} />
+      <Route path="/login" component={Login} />
       <Route exact path="/" component={Root} />
-      <Route path="/login" component={Login}>
-        <Login />
-      </Route>
     </Container>
   );
 }

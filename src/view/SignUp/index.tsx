@@ -1,18 +1,55 @@
-import { Button, TextField } from '@material-ui/core';
+import { Box, Button, Paper } from '@material-ui/core';
+import { Formik } from 'formik';
 import React from 'react';
+import { InputGroup } from '../../components/InputGroup';
+import './style.scss';
 
-const Component = () => {
+interface SignUpProps {}
+
+const Component: React.FC<SignUpProps> = ({}) => {
   return (
-    <>
+    <Paper>
       <h1>Sign Up</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <TextField label="Username" />
-        <TextField label="Email" />
-        <TextField label="Password" type="password" />
-        <TextField label="Confirm Password" type="password" />
-        <Button>Sign Up</Button>
-      </form>
-    </>
+      <Formik
+        initialValues={{ username: '', password: '', confirmPassword: '' }}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ values, handleChange }) => (
+          <form id="signup-form">
+            <Box width={'100%'}>
+              <InputGroup
+                name="username"
+                placeholder="username"
+                label="Username"
+              />
+            </Box>
+            <Box width={'100%'}>
+              <InputGroup
+                name="password"
+                placeholder="password"
+                label="Password"
+                type="password"
+              />
+            </Box>
+            <Box width={'100%'}>
+              <InputGroup
+                name="confirmPassword"
+                placeholder="confirm password"
+                label="Confirm Password"
+                type="password"
+              />
+            </Box>
+            <Box>
+              <Button type="submit" variant="contained" color="primary">
+                Sign Up
+              </Button>
+            </Box>
+          </form>
+        )}
+      </Formik>
+    </Paper>
   );
 };
 
