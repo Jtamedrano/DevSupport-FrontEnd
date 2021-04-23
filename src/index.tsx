@@ -10,6 +10,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import App from './App';
 // import Store from './Redux/store.ts';
 import './style.css';
+import Store from './redux/store';
 
 const cache = new InMemoryCache();
 
@@ -29,13 +30,13 @@ const theme = createMuiTheme();
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    {/* <Provider store={Store}> */}
-    <Router>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </Router>
-    {/* </Provider>, */}
+    <Provider store={Store}>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </Router>
+    </Provider>
   </ApolloProvider>,
   document.getElementById('root'),
 );

@@ -2,7 +2,7 @@ export interface Question {
   question: string;
   createdAt: number;
   resolved: boolean;
-  resolution: string;
+  resolution?: string;
   upvote: string;
   downvote: string;
   author: {
@@ -11,7 +11,7 @@ export interface Question {
   group: {
     groupName: string;
   };
-  responses: Response[];
+  responses?: Response[];
 }
 
 export interface Response {

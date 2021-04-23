@@ -15,7 +15,7 @@ import ResponseComponent from '../response_component';
 import type { Question } from 'src/types';
 
 export interface QuestionsComponentProps {
-  q: Question;
+  question: Question;
   i: number;
 }
 const useStyles = makeStyles({
@@ -45,36 +45,35 @@ const useStyles = makeStyles({
 
 const QuestionsComponent = (props: QuestionsComponentProps) => {
   const classes = useStyles(props);
-  const { q, i } = props;
-  console.log(q);
+  const { question, i } = props;
   return (
     <>
       <Paper key={i} className={classes.root}>
         <Container maxWidth="xl" className={classes.timeContainer}>
           <Chip
             className={classes.chip}
-            label={q.resolved ? 'Resolved' : 'Pending'}
-            color={q.resolved ? 'primary' : 'secondary'}
+            label={question.resolved ? 'Resolved' : 'Pending'}
+            color={question.resolved ? 'primary' : 'secondary'}
           />
           <Typography variant="body1" component="p" className={classes.time}>
-            <AccessTimeIcon /> {new Date(q.createdAt).toUTCString()}
+            <AccessTimeIcon /> {new Date(question.createdAt).toUTCString()}
           </Typography>
         </Container>
 
         <Container maxWidth="xl" className={classes.questionContainer}>
           <Typography variant="h3" component="h3">
-            {q.question}
+            {question.question}
           </Typography>
           <Typography variant="h6" component="h4">
-            Author: {q.author.username}
+            Author: {question.author.username}
           </Typography>
         </Container>
-        {q.resolved ? (
+        {question.resolved ? (
           <>
             <Divider variant="middle" className={classes.divider} />
             <Box className={classes.responseContainer}>
-              {q.responses &&
-                q.responses.map((response, i) => (
+              {question.responses &&
+                question.responses.map((response, i) => (
                   <ResponseComponent response={response} i={i} />
                 ))}
             </Box>

@@ -1,7 +1,6 @@
+import { combineReducers } from 'redux';
+import { userReducer } from './User/user_reducer';
+
 export interface RootReducerProps {}
 
-const RootReducer = () => {
-  return {};
-};
-
-export default RootReducer;
+export const allReducers = combineReducers({ user: userReducer });

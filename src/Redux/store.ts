@@ -1,9 +1,6 @@
 import { createStore } from 'redux';
-import { useDispatch } from 'react-redux';
-import RootReducer from './root_reducer';
+import { allReducers } from './root_reducer';
 
-const Store = createStore({
-  reducer: null,
-});
+const Store = createStore(allReducers);
 
 export default Store;

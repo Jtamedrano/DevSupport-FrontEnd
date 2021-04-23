@@ -18,14 +18,14 @@ const Component: React.FC<SignUpProps> = ({}) => {
       >
         {({ values, handleChange }) => (
           <form id="signup-form">
-            <Box width={'100%'}>
+            <Box width={'100%'} mb={1}>
               <InputGroup
                 name="username"
                 placeholder="username"
                 label="Username"
               />
             </Box>
-            <Box width={'100%'}>
+            <Box width={'100%'} mb={1}>
               <InputGroup
                 name="password"
                 placeholder="password"
@@ -33,7 +33,7 @@ const Component: React.FC<SignUpProps> = ({}) => {
                 type="password"
               />
             </Box>
-            <Box width={'100%'}>
+            <Box width={'100%'} mb={1}>
               <InputGroup
                 name="confirmPassword"
                 placeholder="confirm password"
@@ -41,7 +41,7 @@ const Component: React.FC<SignUpProps> = ({}) => {
                 type="password"
               />
             </Box>
-            <Box>
+            <Box mb={1}>
               <Button type="submit" variant="contained" color="primary">
                 Sign Up
               </Button>

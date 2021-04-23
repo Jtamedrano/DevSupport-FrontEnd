@@ -1,4 +1,6 @@
-const questions = [
+import type { Question } from './types';
+
+const questions: Question[] = [
   {
     question: 'What is 1 + 1?',
     createdAt: 1519211809934,
