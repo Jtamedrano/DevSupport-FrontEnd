@@ -5,6 +5,8 @@ export const userReducer = (
   action: Action,
 ) => {
   switch (action.type) {
+    case 'logout':
+      return { ...state, isAuthenticated: false };
     default:
       return state;
   }

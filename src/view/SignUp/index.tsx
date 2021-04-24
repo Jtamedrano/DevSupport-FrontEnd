@@ -1,31 +1,60 @@
-import { Box, Button, Paper } from '@material-ui/core';
-import { Formik } from 'formik';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  makeStyles,
+  Paper,
+  Theme,
+  Typography,
+} from '@material-ui/core';
+import { Form, Formik } from 'formik';
 import React from 'react';
 import { InputGroup } from '../../components/InputGroup';
 import './style.scss';
 
 interface SignUpProps {}
 
+const useStyles = makeStyles((theme: Theme) => ({
+  signUpWrapper: {
+    padding: theme.spacing(2),
+    width: '50%',
+  },
+  headerText: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(2),
+  },
+  inputWrapper: {
+    marginBottom: theme.spacing(2),
+    width: '75%',
+  },
+  buttonWrapper: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
 const Component: React.FC<SignUpProps> = ({}) => {
+  const classes = useStyles();
   return (
-    <Paper>
-      <h1>Sign Up</h1>
+    <Paper className={classes.signUpWrapper}>
+      <Typography variant={'h2'} className={classes.headerText}>
+        Sign Up
+      </Typography>
       <Formik
         initialValues={{ username: '', password: '', confirmPassword: '' }}
         onSubmit={(values) => {
           console.log(values);
         }}
       >
-        {({ values, handleChange }) => (
-          <form id="signup-form">
-            <Box width={'100%'} mb={1}>
+        {({ isSubmitting }) => (
+          <Form id="signup-form">
+            <Box className={classes.inputWrapper}>
               <InputGroup
                 name="username"
                 placeholder="username"
                 label="Username"
               />
             </Box>
-            <Box width={'100%'} mb={1}>
+            <Box className={classes.inputWrapper}>
               <InputGroup
                 name="password"
                 placeholder="password"
@@ -33,7 +62,7 @@ const Component: React.FC<SignUpProps> = ({}) => {
                 type="password"
               />
             </Box>
-            <Box width={'100%'} mb={1}>
+            <Box className={classes.inputWrapper}>
               <InputGroup
                 name="confirmPassword"
                 placeholder="confirm password"
@@ -41,12 +70,17 @@ const Component: React.FC<SignUpProps> = ({}) => {
                 type="password"
               />
             </Box>
-            <Box mb={1}>
-              <Button type="submit" variant="contained" color="primary">
-                Sign Up
+            <Box className={classes.buttonWrapper}>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                variant="outlined"
+                color="primary"
+              >
+                {isSubmitting ? <CircularProgress size={24} /> : 'Sign Up'}
               </Button>
             </Box>
-          </form>
+          </Form>
         )}
       </Formik>
     </Paper>

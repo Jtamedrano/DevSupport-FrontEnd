@@ -10,10 +10,12 @@ import {
 import type { Question } from 'src/types';
 
 export interface QuestionResponseProps {
-  q: Question;
+  questionIndex: number;
 }
 
-const QuestionResponse: React.FC = () => {
+const QuestionResponse: React.FC<QuestionResponseProps> = ({
+  questionIndex,
+}) => {
   return (
     <>
       <Typography variant="h6" component="h6">
@@ -24,7 +26,10 @@ const QuestionResponse: React.FC = () => {
           e.preventDefault();
         }}
       >
-        <TextField id="response" label="Response" />
+        <TextField
+          id={`question-response-form-${questionIndex}`}
+          label="Response"
+        />
         <Button type="submit" color="primary">
           Submit Response
         </Button>

@@ -21,6 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { getSelectors } from '../selectors';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -34,6 +35,13 @@ const useStyles = makeStyles((theme: Theme) => {
       display: 'none',
       [theme.breakpoints.up('sm')]: {
         display: 'block',
+      },
+      transition: 'color .2s ease-in-out',
+      '&:hover': {
+        cursor: 'pointer',
+      },
+      '&:active': {
+        color: '#cecece',
       },
     },
     search: {
@@ -89,6 +97,7 @@ const useStyles = makeStyles((theme: Theme) => {
 });
 
 const Header = () => {
+  const dispatch = useDispatch();
   const { isAuthenticated } = getSelectors().user;
   const history = useHistory();
   const classes = useStyles();
@@ -119,7 +128,7 @@ const Header = () => {
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
+  const renderMenu = isAuthenticated ? (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -129,36 +138,49 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {isAuthenticated ? (
-        <>
-          <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </>
-      ) : (
-        <>
-          <MenuItem
-            onClick={() => {
-              handleMenuClose();
-              history.push('/login');
-            }}
-          >
-            Login
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              handleMenuClose();
-              history.push('/join');
-            }}
-          >
-            Sign Up
-          </MenuItem>
-        </>
-      )}
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem
+        onClick={() => {
+          dispatch({ type: 'logout' });
+          handleMenuClose();
+          history.replace('/');
+        }}
+      >
+        Logout
+      </MenuItem>
+    </Menu>
+  ) : (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem
+        onClick={() => {
+          handleMenuClose();
+          history.push('/login');
+        }}
+      >
+        Login
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose();
+          history.push('/join');
+        }}
+      >
+        Sign Up
+      </MenuItem>
     </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
+  const renderMobileMenu = isAuthenticated && (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -168,37 +190,33 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {isAuthenticated && (
-        <>
-          <MenuItem>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <p>Messages</p>
-          </MenuItem>
-          <MenuItem>
-            <IconButton aria-label="show 11 new notifications" color="inherit">
-              <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <p>Notifications</p>
-          </MenuItem>
-          <MenuItem onClick={handleProfileMenuOpen}>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="primary-search-account-menu"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <p>Profile</p>
-          </MenuItem>
-        </>
-      )}
+      <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
     </Menu>
   );
 
@@ -214,7 +232,14 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            noWrap
+            onClick={() => {
+              history.push('/');
+            }}
+          >
             {'De>_Support'}
           </Typography>
           <div className={classes.search}>

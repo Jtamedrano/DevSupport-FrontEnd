@@ -42,7 +42,9 @@ const QuestionsWrapper: React.FC = () => {
       <div className={classes.rootPaper}>
         <h2>Question List</h2>
         {questions.map((q, i) => {
-          return <QuestionComponent question={q} i={i} />;
+          return (
+            <QuestionComponent question={q} i={i} key={`question-${i + 1}`} />
+          );
         })}
       </div>
     </>

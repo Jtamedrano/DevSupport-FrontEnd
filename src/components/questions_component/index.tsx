@@ -73,8 +73,12 @@ const QuestionsComponent = (props: QuestionsComponentProps) => {
             <Divider variant="middle" className={classes.divider} />
             <Box className={classes.responseContainer}>
               {question.responses &&
-                question.responses.map((response, i) => (
-                  <ResponseComponent response={response} i={i} />
+                question.responses.map((response, responseIndex) => (
+                  <ResponseComponent
+                    response={response}
+                    i={responseIndex}
+                    key={`question-${i + 1}-response-${responseIndex + 1}`}
+                  />
                 ))}
             </Box>
           </>
@@ -83,7 +87,7 @@ const QuestionsComponent = (props: QuestionsComponentProps) => {
             <Button color="primary">Request Answer</Button>
           </>
         )}
-        <QuestionResponse />
+        <QuestionResponse questionIndex={i} />
       </Paper>
     </>
   );
